@@ -1,7 +1,6 @@
 package com.example.chattcpfx;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class EventHandler implements javafx.event.EventHandler<ActionEvent> {
+public class ConnectButtonEventHandler implements javafx.event.EventHandler<ActionEvent> {
     @FXML
 private TextField hostField;
     @FXML
@@ -24,12 +23,13 @@ private  TextField loginField;
         String portValue=portField.getText();
         String loginValue=loginField.getText();
         int port=Integer.parseInt(portValue);
-        NetClient netClient=NetClient.getInstance();
+        NetClient netClient=new NetClient();
         netClient.setLogin(loginValue);
         netClient.setHost(hostValue);
         netClient.setPort(port);
         try {
             netClient.connect();
+            SentMessageController.netClient=netClient;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

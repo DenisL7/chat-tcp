@@ -26,7 +26,14 @@ public class ClientSession extends Thread {
                 clientRepositoriy.sentMessageToAllClients(clientMessage);
 
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                //throw new RuntimeException(e);
+                try {
+                    socket.close();
+                    System.out.println("client was closed");
+                    break;
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         }
     }
