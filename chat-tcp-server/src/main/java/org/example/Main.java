@@ -6,8 +6,8 @@ import java.net.Socket;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(1212);
-        System.out.println("server is started");
+        ServerSocket serverSocket = new ServerSocket(8081);
+        System.out.println("server is started on port 8081");
         ClientRepositoriy clientRepositoriy = ClientRepositoriy.getInstance();
         while (true) {
             Socket socket = serverSocket.accept();
